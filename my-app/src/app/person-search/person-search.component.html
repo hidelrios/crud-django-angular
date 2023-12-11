@@ -1,0 +1,82 @@
+<form [formGroup]="searchPersonForm" (ngSubmit)="applyFilter()">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput placeholder="Ex. Mia" #input formControlName="name" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Pesquisar</button>
+</form>
+
+<div *ngIf="resultSearch.length > 0">
+  <table mat-table [dataSource]="resultSearch" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birth_date">
+      <th mat-header-cell *matHeaderCellDef>Birth date</th>
+      <td mat-cell *matCellDef="let element">{{ element.birth_date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef>Cpf</th>
+      <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sex">
+      <th mat-header-cell *matHeaderCellDef>Sex</th>
+      <td mat-cell *matCellDef="let element">{{ element.sex }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef>Height</th>
+      <td mat-cell *matCellDef="let element">{{ element.height }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletePerson(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<div *ngIf="selectedPerson">
+  <h3>Editar Pessoa</h3>
+  <form [formGroup]="editPersonForm" (ngSubmit)="salvarEdicao()">
+    <label for="name">First Name: </label>
+    <input id="name" type="text" formControlName="name" />
+
+    <label for="birth_date">birth_date: </label>
+    <input id="birth_date" type="text" formControlName="birth_date" />
+
+    <label for="cpf">cpf: </label>
+    <input id="cpf" type="text" formControlName="cpf" />
+
+    <label for="sex">sex: </label>
+    <input id="sex" type="text" formControlName="sex" />
+
+    <label for="height">height: </label>
+    <input id="height" type="text" formControlName="height" />
+
+    <label for="weight">weight: </label>
+    <input id="weight" type="text" formControlName="weight" />
+    <!-- Adicione outros campos conforme necessário -->
+
+    <button type="submit">Salvar</button>
+  </form>
+</div>

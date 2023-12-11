@@ -1,0 +1,95 @@
+<!-- <p>person-editor works!</p>
+
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+
+  <label for="name">First Name: </label>
+  <input id="name" type="text" formControlName="name">
+
+  <label for="birth_date">birth_date: </label>
+  <input id="birth_date" type="text" formControlName="birth_date">
+
+  <label for="cpf">cpf: </label>
+  <input id="cpf" type="text" formControlName="cpf">
+
+  <label for="sex">sex: </label>
+  <input id="sex" type="text" formControlName="sex">
+
+  <label for="height">height: </label>
+  <input id="height" type="text" formControlName="height">
+
+  <label for="weight">weight: </label>
+  <input id="weight" type="text" formControlName="weight">
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!personForm.valid">Submit</button>
+</form>
+ -->
+
+<div mat-dialog-title>
+  <h1>Person Form</h1>
+</div>
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. Luana Rodrigues"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cpf</mat-label>
+        <input matInput placeholder="0567921119" formControlName="cpf" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Height</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. 190.0"
+          formControlName="height"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. 70.0"
+          formControlName="weight"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-radio-group aria-label="Select an option" formControlName="sex">
+        <mat-label><b>Gender</b></mat-label>
+        <mat-radio-button value="M">Male</mat-radio-button>
+        <mat-radio-button value="F">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Escolha uma data"
+          formControlName="birth_date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!personForm.valid">save</button>
+  </div>
+</form>
