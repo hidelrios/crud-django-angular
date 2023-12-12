@@ -1,50 +1,39 @@
-<!-- <p>person-list works!</p>
-<ul>
-  <li *ngFor="let person of personList">{{person.id}}{{person.name}}{{person.cpf}} <button (click)="deletePerson(person.id)">apagar</button> </li>
-</ul> -->
-<table mat-table [dataSource]="personList" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
+<table
+  mat-table
+  [dataSource]="personList"
+  *ngIf="showPersonList$ | async"
+  class="mat-elevation-z8"
+>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="birth_date">
-    <th mat-header-cell *matHeaderCellDef> Birth date </th>
-    <td mat-cell *matCellDef="let element"> {{element.birth_date}} </td>
+    <th mat-header-cell *matHeaderCellDef>Birth date</th>
+    <td mat-cell *matCellDef="let element">{{ element.birth_date }}</td>
   </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="cpf">
-      <th mat-header-cell *matHeaderCellDef> Cpf </th>
-      <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
-    </ng-container>
+  <ng-container matColumnDef="cpf">
+    <th mat-header-cell *matHeaderCellDef>Cpf</th>
+    <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+  </ng-container>
 
-      <!-- Name Column -->
   <ng-container matColumnDef="sex">
-    <th mat-header-cell *matHeaderCellDef> Sex </th>
-    <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+    <th mat-header-cell *matHeaderCellDef>Sex</th>
+    <td mat-cell *matCellDef="let element">{{ element.sex }}</td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="height">
-    <th mat-header-cell *matHeaderCellDef> Height </th>
-    <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+    <th mat-header-cell *matHeaderCellDef>Height</th>
+    <td mat-cell *matCellDef="let element">{{ element.height }}</td>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <th mat-header-cell *matHeaderCellDef>Weight</th>
+    <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-
-

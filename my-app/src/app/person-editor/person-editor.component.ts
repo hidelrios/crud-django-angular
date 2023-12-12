@@ -87,7 +87,6 @@ export class PersonEditorComponent {
   });
 
   onSubmit() {
-    console.log('clicou no butao');
     this.newPerson = {
       name: this.personForm.value.name!,
       birth_date: moment(this.personForm.value.birth_date).format(
@@ -99,7 +98,6 @@ export class PersonEditorComponent {
       weight: this.personForm.value.weight!,
     };
 
-    console.log(this.newPerson);
     this.personService.addPerson(this.newPerson).subscribe(
       () => {
         this.personService.updateItemList();
@@ -109,6 +107,10 @@ export class PersonEditorComponent {
 
       (err: any) => {
         console.error(err);
+        this.personService.openSnackBar(
+          'Error when trying to add data check the information'
+        );
+        this.dialogRef.close(true);
       }
     );
   }

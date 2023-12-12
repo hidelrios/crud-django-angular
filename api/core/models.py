@@ -19,12 +19,9 @@ class Person(models.Model):
 
     @staticmethod
     def calculate_ideal_weight(sex, height):
-        if sex in dict(Person.SEX_CHOICES).keys():
-            if sex == "M":
-                return Decimal((72.7 * height) - 58)
-            elif sex == "F":
-                return Decimal((62.1 * height) - 44.7)
-        else:
-            raise ValueError("Sexo inválido")
+        if sex == "M":
+            return Decimal((72.7 * height) - 58)
+        elif sex == "F":
+            return Decimal((62.1 * height) - 44.7)
 
 

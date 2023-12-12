@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ThemePalette } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -33,7 +34,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatToolbarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    MatDialogModule
+
   ],
   providers:[
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
@@ -48,4 +50,5 @@ export class AppComponent {
   title = 'my-app';
   @Input()
   color: ThemePalette
+
 }

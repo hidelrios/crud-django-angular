@@ -1,7 +1,7 @@
 <div mat-dialog-title>
   <h1>Person Form</h1>
 </div>
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="editPersonForm" (ngSubmit)="saveUpdatePerson()">
   <div mat-dialog-content class="content">
     <div class="row">
       <mat-form-field appearance="outline">
@@ -16,7 +16,12 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Cpf</mat-label>
-        <input matInput placeholder="0567921119" formControlName="cpf" required/>
+        <input
+          matInput
+          placeholder="0567921119"
+          formControlName="cpf"
+          required
+        />
       </mat-form-field>
     </div>
 
@@ -43,7 +48,11 @@
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-radio-group aria-label="Select an option" formControlName="sex" required>
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="sex"
+        required
+      >
         <mat-label><b>Gender</b></mat-label>
         <mat-radio-button value="M">Male</mat-radio-button>
         <mat-radio-button value="F">Female</mat-radio-button>
@@ -67,6 +76,13 @@
     <button mat-raised-button type="button" [mat-dialog-close]="false">
       Cancel
     </button>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!personForm.valid">save</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!editPersonForm.valid"
+    >
+      save
+    </button>
   </div>
 </form>

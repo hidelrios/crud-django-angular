@@ -1,33 +1,37 @@
-import { Component, NgModule, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
-import { PersonEditorComponent } from '../person-editor/person-editor.component';
-import { Subscription } from 'rxjs';
-import { NgFor } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import { Observable } from 'rxjs';
+import { CommonModule, NgFor } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-person-list',
   standalone: true,
-  imports:[NgFor,MatTableModule, ],
+  imports: [NgFor, MatTableModule, CommonModule],
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.css'],
 })
-
-
 export class PersonListComponent implements OnInit {
   personList: Person[] = [];
-  displayedColumns: string[] = ['name', 'birth_date', 'cpf', 'sex','height', 'weight',];
 
-  constructor(
-    private personService: PersonService,
+  displayedColumns: string[] = [
+    'name',
+    'birth_date',
+    'cpf',
+    'sex',
+    'height',
+    'weight',
+  ];
 
-    ) {}
+  showPersonList$: Observable<boolean>;
+
+  constructor(private personService: PersonService) {
+    this.showPersonList$ = this.personService.showPersonList$;
+  }
 
   ngOnInit() {
+    this.personService.togglePersonList(true);
     this.getPersonList();
     this.personService.itemList$.subscribe((items) => {
       this.personList = items;
@@ -35,9 +39,8 @@ export class PersonListComponent implements OnInit {
   }
 
   getPersonList() {
-    this.personService.getAllPerson().then((personList: Person[]) => {
+    this.personService.getPersonList().then((personList: Person[]) => {
       this.personList = personList;
     });
   }
-
 }
