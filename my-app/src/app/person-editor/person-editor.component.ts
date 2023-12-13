@@ -101,7 +101,7 @@ export class PersonEditorComponent {
     this.personService.addPerson(this.newPerson).subscribe(
       () => {
         this.personService.updateItemList();
-        this.personService.openSnackBar('Employee added successfully');
+        this.personService.openSnackBar('Person added successfully');
         this.dialogRef.close(true);
       },
 

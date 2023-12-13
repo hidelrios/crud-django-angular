@@ -3,7 +3,7 @@
     <mat-label>Filter</mat-label>
     <input matInput placeholder="Ex. Mia" #input formControlName="name" />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Pesquisar</button>
+  <button mat-raised-button color="primary" type="submit">Search</button>
 </form>
 
 <div *ngIf="resultSearch.length > 0 && (showPersonSearch$ | async)">

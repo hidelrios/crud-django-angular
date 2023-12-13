@@ -20,8 +20,8 @@ class Person(models.Model):
     @staticmethod
     def calculate_ideal_weight(sex, height):
         if sex == "M":
-            return Decimal((72.7 * height) - 58)
+            return round(Decimal((72.7 * height) - 58),2)
         elif sex == "F":
-            return Decimal((62.1 * height) - 44.7)
+            return round(Decimal((62.1 * height) - 44.7),2)
 
 
