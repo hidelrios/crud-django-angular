@@ -3,6 +3,7 @@ from decimal import Decimal
 
 # Create your models here.
 
+
 class Person(models.Model):
     SEX_CHOICES = (
         ("M", "Masculino"),
@@ -16,12 +17,9 @@ class Person(models.Model):
     height = models.FloatField()
     weight = models.FloatField()
 
-
     @staticmethod
     def calculate_ideal_weight(sex, height):
         if sex == "M":
-            return round(Decimal((72.7 * height) - 58),2)
+            return round(Decimal((72.7 * height) - 58), 2)
         elif sex == "F":
-            return round(Decimal((62.1 * height) - 44.7),2)
-
-
+            return round(Decimal((62.1 * height) - 44.7), 2)
